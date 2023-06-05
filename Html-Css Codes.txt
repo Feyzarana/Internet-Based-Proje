@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diziforum</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .movie {
+      width: 200px;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .movie img {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      background-color: #f2f2f2;
+      margin: 10% auto;
+      padding: 20px;
+      width: 50%;
+      max-width: 500px;
+      border-radius: 5px;
+    }
+
+    .close {
+      color: #aaab;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #colors {
+      color: black;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Diziforum</h1>
+    <button class="btn" onclick="openModal('register-modal')">Kayıt Ol</button>
+    <button class="btn" onclick="openModal('login-modal')">Giriş</button>
+    <button class="btn" onclick="openModal('admin-login-modal')">Admin Giriş</button>
+  </header>
+
+  <main>
+       <div class="movie">
+      <img src="https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_.jpg">
+      <h2>Last Of Us</h2>
+      <p>Tür: Aksiyon, Bilim Kurgu</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+
+
+    <div class="movie">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjIzOTY1YTYtNmRhMC00MzAxLWEzMzUtM2ZiMmYwNTY0MjMyXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_FMjpg_UX1000_.jpg">
+      <h2>Ezel</h2>
+      <p>Tür: Dram, Suç</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_FMjpg_UX1000_.jpg">
+      <h2>Ofis</h2>
+      <p>Tür: Komedi, Drama</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://static.boxofficeturkiye.com/movie//poster/full/52/1152-49156430.jpg">
+      <h2>Muhteşem Bayan Maisel</h2>
+      <p>Tür: Komedi, Drama</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://tr.web.img4.acsta.net/pictures/23/04/20/08/50/2513648.jpg">
+      <h2>Hızlı ve Öfkeli 10</h2>
+      <p>Tür: Aksiyon</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://images.justwatch.com/poster/272245384/s592/esaretin-bedeli">
+      <h2>Esaretin Bedeli</h2>
+      <p>Tür: Dram</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg">
+      <h2>Baba</h2>
+      <p>Tür: Suç, Dram</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://cdn1.ntv.com.tr/gorsel/FbSMUafW1EibIWi6lTRuGg.jpg?width=1000&mode=crop&scale=both">
+      <h2>Matrix</h2>
+      <p>Tür: Bilim Kurgu, Aksiyon</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://tr.web.img3.acsta.net/c_310_420/pictures/bzp/03/18671.jpg">
+      <h2>Truman Show</h2>
+      <p>Tür: Drama, Komedi</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+    <div class="movie">
+      <img src="https://tr.web.img2.acsta.net/r_654_368/newsv7/19/09/20/16/29/4784369.jpg">
+      <h2>Behzat C. (Behzat Ç. Bir Ankara Polisiyesi)</h2>
+      <p>Tür: Suç, Drama</p>
+      <button class="btn" onclick="openModal('comment-modal-1')">Yorum Yap</button>
+      <button class="btn" onclick="openModal('rating-modal-1')">Puan Ver</button>
+    </div>
+  </main>
+
+  </main>
+
+  <!-- Register Modal -->
+  <div id="register-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('register-modal')">&times;</span>
+      <h2>Kayıt Ol</h2>
+      <form method="POST" action="register.php">
+        <table id="colors">
+        <tr><td><label for="name">İsim:</label></td></tr>
+        <tr><td><input type="text" id="name" required></td></tr>
+        <tr><td><label for="surname">Soyisim:</label></td>
+        <tr><td><input type="text" id="surname" required></td></tr>
+        <tr><td><label for="age">Yaş:</label></td></tr>
+        <tr><td><input type="number" id="age" required></td></tr>
+        <tr><td><label for="birthday">Doğum Günü:</label></td></tr>
+        <tr><td><input type="date" id="birthday" required></td></tr>
+        <tr><td><label for="gender">Cinsiyet:</label></td></tr>
+        <tr><td><select id="gender" required>
+            <option value="male">Erkek</option>
+            <option value="female">Kadın</option>
+          </select></td></tr>
+        <tr><td><label for="username">Kullanıcı Adı:</label></td></tr>
+        <tr><td><input type="text" id="username" required></td></tr>
+        <tr><td><label for="password">Şifre:</label></td></tr>
+        <tr><td><input type="password" id="password" required></td></tr>
+        <tr><td><input type="submit" value="Kayıt Ol"></td></tr>
+    </table>  
+      </form>
+    </div>
+  </div>
+
+  <!-- User Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('login-modal')">&times;</span>
+      <h2>Giriş Yap</h2>
+      <form method="POST" action="login.php">
+        <input type="text" name="username" placeholder="Kullanıcı Adı" required><br><br>
+        <input type="password" name="password" placeholder="Şifre" required><br><br>
+        <input type="submit" value="Giriş">
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="admin-login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('admin-login-modal')">&times;</span>
+      <h2>Admin Girişi</h2>
+      <form method="POST" action="admin-login.php">
+        <input type="text" name="username" placeholder="Kullanıcı Adı" required><br><br>
+        <input type="password" name="password" placeholder="Şifre" required><br><br>
+        <input type="submit" value="Admin Giriş">
+      </form>
+    </div>
+  </div>
+
+  <!-- Comment Modal -->
+  <div id="comment-modal-1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('comment-modal-1')">&times;</span>
+      <h2>Yorum Yap</h2>
+      <form method="POST" action="comment.php">
+        <textarea name="comment" placeholder="Yorumunuzu buraya girin" required></textarea><br><br>
+        <input type="submit" value="Gönder">
+      </form>
+    </div>
+  </div>
+
+  <!-- Rating Modal -->
+  <div id="rating-modal-1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('rating-modal-1')">&times;</span>
+      <h2>Oy Ver</h2>
+      <form method="POST" action="rating.php">
+        <select name="rating" required>
+          <option value="">Puan Seçin</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select><br><br>
+        <input type="submit" value="Oy Ver">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "block";
+    }
+
+    function closeModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+
+</html>
